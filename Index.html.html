@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Origine & Cultures — Association Île-de-France</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Marcellus&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --noir: #1A1A1A;
+    --noir-carte: #2E2E2E;
+    --or: #C9A84C;
+    --or-clair: #D4B86A;
+    --ivoire: #F5F0E8;
+    --ivoire-sombre: #D6CFBE;
+    --blanc: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--noir);
+    color: var(--ivoire);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CURSEUR CUSTOM */
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--or);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+  }
+  .cursor-ring {
+    width: 32px; height: 32px;
+    border: 1px solid rgba(201,168,76,0.5);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.15s ease;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(26,26,26,0.95), transparent);
+  }
+
+  .nav-logo {
+    font-family: 'Marcellus', serif;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    color: var(--or);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--ivoire-sombre);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--or); }
+
+  /* HERO */
+  .hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 50% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 30% 40% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+  }
+
+  /* Grille de continents décorative */
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    opacity: 0.03;
+    pointer-events: none;
+  }
+  .hero-grid-cell {
+    border: 1px solid var(--or);
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--or);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 8vw, 120px);
+    font-weight: 300;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--ivoire);
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.5s forwards;
+  }
+
+  .hero-title span {
+    color: var(--or);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ivoire-sombre);
+    margin-top: 28px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.9s forwards;
+  }
+
+  .hero-line {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, var(--or), transparent);
+    margin-top: 60px;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.2s forwards;
+  }
+
+  /* SECTION COMMUNE */
+  section {
+    padding: 120px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--or);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-label::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--or);
+    opacity: 0.5;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 64px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ivoire);
+    margin-bottom: 24px;
+  }
+
+  .section-title em {
+    color: var(--or);
+    font-style: italic;
+  }
+
+  .section-text {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--ivoire-sombre);
+    max-width: 560px;
+  }
+
+  /* ABOUT */
+  .about-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-card {
+    background: var(--noir-carte);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 50px;
+    position: relative;
+  }
+
+  .about-card::before {
+    content: 'O&C';
+    position: absolute;
+    top: 24px; right: 32px;
+    font-family: 'Marcellus', serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--or);
+    opacity: 0.5;
+  }
+
+  .about-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--or);
+    line-height: 1;
+    min-width: 80px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ivoire-sombre);
+    padding-top: 8px;
+    line-height: 1.6;
+  }
+
+  /* EXPO SECTION */
+  .expo-section {
+    background: var(--noir-carte);
+    max-width: 100%;
+    padding: 120px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .expo-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    background: radial-gradient(ellipse 40% 60% at 80% 50%, rgba(201,168,76,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .expo-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .expo-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 80px;
+  }
+
+  .expo-date-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 10px 20px;
+    margin-bottom: 24px;
+  }
+
+  .expo-date-badge span {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--or);
+  }
+
+  .expo-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-self: end;
+  }
+
+  .expo-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--ivoire-sombre);
+  }
+
+  .expo-meta-item::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--or);
+    opacity: 0.6;
+  }
+
+  /* GALERIE */
+  .galerie-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 3px;
+    margin-bottom: 60px;
+  }
+
+  .galerie-item {
+    background: #111;
+    position: relative;
+    overflow: hidden;
+    cursor: none;
+  }
+
+  .galerie-item:first-child {
+    grid-row: span 2;
+    height: 520px;
+  }
+
+  .galerie-item:not(:first-child) {
+    height: 257px;
+  }
+
+  .galerie-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #1f1f1f 0%, #2a2a2a 50%, #1a1a1a 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    transition: all 0.5s ease;
+  }
+
+  .galerie-item:hover .galerie-placeholder {
+    background: linear-gradient(135deg, #252510 0%, #2a2510 50%, #1a1a0a 100%);
+  }
+
+  .galerie-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 60px;
+    font-weight: 300;
+    color: rgba(201,168,76,0.08);
+    position: absolute;
+    top: 16px; right: 20px;
+    line-height: 1;
+  }
+
+  .galerie-tag {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--or);
+    opacity: 0.7;
+    margin-bottom: 6px;
+  }
+
+  .galerie-caption {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--ivoire);
+    font-style: italic;
+  }
+
+  .galerie-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(201,168,76,0.08);
+    opacity: 0;
+    transition: opacity 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .galerie-item:hover .galerie-overlay { opacity: 1; }
+
+  .qr-hint {
+    border: 1px solid var(--or);
+    padding: 10px 16px;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--or);
+  }
+
+  /* QR CONCEPT */
+  .qr-concept {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    align-items: center;
+    padding: 48px;
+    border: 1px solid rgba(201,168,76,0.15);
+    background: rgba(201,168,76,0.02);
+    margin-top: 60px;
+  }
+
+  .qr-mockup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .qr-box {
+    width: 100px; height: 100px;
+    border: 2px solid var(--or);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .qr-box::before, .qr-box::after {
+    content: '';
+    position: absolute;
+    width: 20px; height: 20px;
+    border: 2px solid var(--or);
+  }
+  .qr-box::before { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+  .qr-box::after { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+
+  .qr-inner {
+    width: 50px; height: 50px;
+    background: 
+      repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(201,168,76,0.3) 4px, rgba(201,168,76,0.3) 5px),
+      repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(201,168,76,0.3) 4px, rgba(201,168,76,0.3) 5px);
+  }
+
+  .qr-text h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--ivoire);
+    margin-bottom: 12px;
+  }
+
+  .qr-text p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--ivoire-sombre);
+  }
+
+  /* AGENDA */
+  .agenda-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 60px;
+  }
+
+  .agenda-item {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 40px;
+    align-items: center;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    transition: all 0.3s;
+  }
+
+  .agenda-item:hover {
+    padding-left: 16px;
+    border-bottom-color: rgba(201,168,76,0.3);
+  }
+
+  .agenda-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--or);
+    letter-spacing: 0.1em;
+  }
+
+  .agenda-event-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--ivoire);
+    margin-bottom: 4px;
+  }
+
+  .agenda-lieu {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--ivoire-sombre);
+  }
+
+  .agenda-tag-expo {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--or);
+  }
+
+  /* CONTACT */
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--or);
+    opacity: 0.8;
+  }
+
+  .form-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(201,168,76,0.25);
+    padding: 12px 0;
+    color: var(--ivoire);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .form-input:focus {
+    border-bottom-color: var(--or);
+  }
+
+  .form-input::placeholder {
+    color: rgba(245,240,232,0.25);
+  }
+
+  textarea.form-input {
+    resize: none;
+    height: 80px;
+  }
+
+  .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: transparent;
+    border: 1px solid var(--or);
+    color: var(--or);
+    padding: 16px 36px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    cursor: none;
+    transition: all 0.3s;
+    align-self: flex-start;
+    margin-top: 8px;
+  }
+
+  .btn-submit:hover {
+    background: var(--or);
+    color: var(--noir);
+  }
+
+  .btn-arrow {
+    font-size: 16px;
+    transition: transform 0.3s;
+  }
+
+  .btn-submit:hover .btn-arrow { transform: translateX(6px); }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .contact-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .contact-info-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--or);
+    opacity: 0.6;
+  }
+
+  .contact-info-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--ivoire);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 48px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: 'Marcellus', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--or);
+    text-transform: uppercase;
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(245,240,232,0.3);
+    letter-spacing: 0.1em;
+  }
+
+  /* SÉPARATEUR */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.2), transparent);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* SCROLL INDICATOR */
+  .scroll-indicator {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 50;
+  }
+
+  .scroll-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.3);
+    transition: all 0.3s;
+    cursor: none;
+  }
+
+  .scroll-dot.active {
+    background: var(--or);
+    transform: scale(1.4);
+  }
+
+  /* DECORATION LINE */
+  .or-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--or), transparent);
+    opacity: 0.4;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">O&C</a>
+  <ul class="nav-links">
+    <li><a href="#about">Association</a></li>
+    <li><a href="#expo">Exposition</a></li>
+    <li><a href="#agenda">Agenda</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- SCROLL INDICATOR -->
+<div class="scroll-indicator">
+  <div class="scroll-dot active" data-section="hero"></div>
+  <div class="scroll-dot" data-section="about"></div>
+  <div class="scroll-dot" data-section="expo"></div>
+  <div class="scroll-dot" data-section="contact"></div>
+</div>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid">
+    <script>
+      document.write(Array(82).fill('<div class="hero-grid-cell"></div>').join(''));
+    </script>
+  </div>
+  <p class="hero-eyebrow">Association · Île-de-France</p>
+  <h1 class="hero-title">Origine<br><span>&</span><br>Cultures</h1>
+  <p class="hero-sub">Explorer · Partager · Transmettre</p>
+  <div class="hero-line"></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-wrapper">
+    <div class="reveal">
+      <p class="section-label">L'association</p>
+      <h2 class="section-title">Une fenêtre sur<br>le <em>monde</em></h2>
+      <p class="section-text">
+        Origine & Cultures est une association culturelle d'Île-de-France dédiée à la découverte et au partage des cultures du monde entier. À travers expositions, rencontres et événements, nous tissons des liens entre les peuples et les histoires.
+      </p>
+      <br><br>
+      <p class="section-text">
+        Notre mission : rendre le monde accessible, visible et vivant — pour tous ceux qui ont la curiosité d'aller au-delà de leurs horizons.
+      </p>
+    </div>
+    <div class="about-visual reveal" style="transition-delay: 0.2s">
+      <div class="about-card">
+        <div class="about-stat">
+          <div class="stat-item">
+            <div class="stat-number">7</div>
+            <div class="stat-label">Continents<br>représentés</div>
+          </div>
+          <div class="or-line"></div>
+          <div class="stat-item">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Cultures<br>explorées</div>
+          </div>
+          <div class="or-line"></div>
+          <div class="stat-item">
+            <div class="stat-number">IDF</div>
+            <div class="stat-label">Île-de-France<br>& au-delà</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPO -->
+<div class="expo-section" id="expo">
+  <div class="expo-inner">
+    <div class="expo-header reveal">
+      <div>
+        <div class="expo-date-badge">
+          <span>Exposition · 2025</span>
+        </div>
+        <p class="section-label">À l'affiche</p>
+        <h2 class="section-title">Regards<br>sur l'<em>Afrique</em></h2>
+        <p class="section-text">
+          Un voyage photographique à travers le continent africain, capturé par le regard sensible du président de l'association. Des instants de vie, des paysages, des rencontres — une invitation à voir autrement.
+        </p>
+      </div>
+      <div class="expo-meta reveal" style="transition-delay: 0.2s">
+        <div class="expo-meta-item">Hôtel Partenaire · Paris</div>
+        <div class="expo-meta-item">Entrée libre</div>
+        <div class="expo-meta-item">Vernissage sur invitation</div>
+        <div class="expo-meta-item">QR codes interactifs sur chaque œuvre</div>
+      </div>
+    </div>
+
+    <!-- GALERIE -->
+    <div class="galerie-grid reveal">
+      <div class="galerie-item">
+        <div class="galerie-placeholder">
+          <div class="galerie-num">01</div>
+          <div class="galerie-tag">Paysage · Savane</div>
+          <div class="galerie-caption">L'aube sur les grands espaces</div>
+        </div>
+        <div class="galerie-overlay"><div class="qr-hint">Voir la fiche →</div></div>
+      </div>
+      <div class="galerie-item">
+        <div class="galerie-placeholder">
+          <div class="galerie-num">02</div>
+          <div class="galerie-tag">Portrait</div>
+          <div class="galerie-caption">Visages du continent</div>
+        </div>
+        <div class="galerie-overlay"><div class="qr-hint">Voir la fiche →</div></div>
+      </div>
+      <div class="galerie-item">
+        <div class="galerie-placeholder">
+          <div class="galerie-num">03</div>
+          <div class="galerie-tag">Architecture</div>
+          <div class="galerie-caption">Mémoire bâtie</div>
+        </div>
+        <div class="galerie-overlay"><div class="qr-hint">Voir la fiche →</div></div>
+      </div>
+      <div class="galerie-item">
+        <div class="galerie-placeholder">
+          <div class="galerie-num">04</div>
+          <div class="galerie-tag">Quotidien</div>
+          <div class="galerie-caption">La vie en couleurs</div>
+        </div>
+        <div class="galerie-overlay"><div class="qr-hint">Voir la fiche →</div></div>
+      </div>
+      <div class="galerie-item">
+        <div class="galerie-placeholder">
+          <div class="galerie-num">05</div>
+          <div class="galerie-tag">Nature</div>
+          <div class="galerie-caption">Faune et territoires</div>
+        </div>
+        <div class="galerie-overlay"><div class="qr-hint">Voir la fiche →</div></div>
+      </div>
+    </div>
+
+    <!-- QR CONCEPT -->
+    <div class="qr-concept reveal">
+      <div class="qr-mockup">
+        <div class="qr-box">
+          <div class="qr-inner"></div>
+        </div>
+      </div>
+      <div class="qr-text">
+        <h3>L'expo dans votre poche</h3>
+        <p>Chaque tableau exposé est accompagné d'un QR code. En le scannant, les visiteurs accèdent instantanément à la fiche détaillée de l'œuvre : lieu de prise de vue, anecdote, contexte du voyage, et galerie étendue. L'exposition continue bien après la visite.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AGENDA -->
+<section id="agenda" style="max-width:1200px">
+  <div class="reveal">
+    <p class="section-label">Agenda</p>
+    <h2 class="section-title">Prochains<br><em>événements</em></h2>
+  </div>
+  <div class="agenda-list">
+    <div class="agenda-item reveal">
+      <div class="agenda-date">À venir<br>2025</div>
+      <div>
+        <div class="agenda-event-title">Exposition — Regards sur l'Afrique</div>
+        <div class="agenda-lieu">Hôtel Partenaire · Paris</div>
+      </div>
+      <div class="agenda-tag-expo">Expo Photo</div>
+    </div>
+    <div class="agenda-item reveal" style="transition-delay:0.1s">
+      <div class="agenda-date">TBD</div>
+      <div>
+        <div class="agenda-event-title">Vernissage & Soirée d'ouverture</div>
+        <div class="agenda-lieu">Sur invitation · Paris</div>
+      </div>
+      <div class="agenda-tag-expo">Événement</div>
+    </div>
+    <div class="agenda-item reveal" style="transition-delay:0.2s">
+      <div class="agenda-date">TBD</div>
+      <div>
+        <div class="agenda-event-title">Conférence — Récit du voyage</div>
+        <div class="agenda-lieu">Île-de-France</div>
+      </div>
+      <div class="agenda-tag-expo">Conférence</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrapper">
+    <div class="reveal">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Rejoignez<br>l'<em>aventure</em></h2>
+      <p class="section-text">
+        Vous souhaitez rejoindre l'association, participer à un événement ou en savoir plus sur nos projets culturels ? Nous serions ravis de vous entendre.
+      </p>
+    </div>
+    <div class="contact-form reveal" style="transition-delay: 0.2s">
+      <div class="form-group">
+        <label class="form-label">Nom</label>
+        <input type="text" class="form-input" placeholder="Votre nom complet">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-input" placeholder="votre@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-input" placeholder="Votre message…"></textarea>
+      </div>
+      <button class="btn-submit">
+        Envoyer <span class="btn-arrow">→</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Origine & Cultures</div>
+  <div class="footer-copy">Association Île-de-France · © 2025</div>
+</footer>
+
+<script>
+  // Curseur custom
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    setTimeout(() => {
+      ring.style.left = e.clientX + 'px';
+      ring.style.top = e.clientY + 'px';
+    }, 80);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Scroll dots
+  const sections = ['hero', 'about', 'expo', 'contact'];
+  const dots = document.querySelectorAll('.scroll-dot');
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        dots.forEach(d => d.classList.remove('active'));
+        const idx = sections.indexOf(e.target.id);
+        if (idx >= 0 && dots[idx]) dots[idx].classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) sectionObserver.observe(el);
+  });
+</script>
+</body>
+</html>
