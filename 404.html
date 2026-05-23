@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1A1A1A">
+<title>Page introuvable — Origine & Cultures</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Marcellus&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --noir: #1A1A1A; --or: #C9A84C; --ivoire: #F5F0E8; --ivoire-sombre: #D6CFBE; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--noir);
+    color: var(--ivoire);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .logo {
+    font-family: 'Marcellus', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--or);
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 1;
+  }
+  .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(120px, 25vw, 220px);
+    font-weight: 300;
+    line-height: 1;
+    color: var(--or);
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+    font-style: italic;
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--ivoire);
+    margin-bottom: 20px;
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+  }
+  p {
+    font-size: 14px;
+    color: var(--ivoire-sombre);
+    max-width: 480px;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid var(--or);
+    color: var(--or);
+    padding: 16px 32px;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    position: relative;
+    z-index: 1;
+    min-height: 48px;
+  }
+  .cta:hover { background: var(--or); color: var(--noir); }
+  .cta-arrow { transition: transform 0.3s; }
+  .cta:hover .cta-arrow { transform: translateX(-6px); }
+</style>
+</head>
+<body>
+  <div class="logo">ORIGINE & CULTURES</div>
+  <div class="num">404</div>
+  <h1>Cette page s'est <em style="color:var(--or);">perdue en route</em></h1>
+  <p>La page que vous cherchez n'existe pas ou a été déplacée. Mais l'aventure continue ailleurs.</p>
+  <a href="/" class="cta">
+    <span class="cta-arrow">←</span> Retour à l'accueil
+  </a>
+</body>
+</html>
