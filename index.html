@@ -4,7 +4,59 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <meta name="theme-color" content="#1A1A1A">
-<title>Origine & Cultures — Association Île-de-France</title>
+<meta name="color-scheme" content="dark">
+
+<!-- SEO -->
+<title>Origine & Cultures — Association culturelle Île-de-France</title>
+<meta name="description" content="Association culturelle d'Île-de-France dédiée à la découverte et au partage des cultures du monde. Expositions, rencontres, voyages photographiques.">
+<meta name="keywords" content="association culturelle, île-de-france, expositions, voyages, cultures du monde, afrique, photographie">
+<meta name="author" content="Origine & Cultures">
+<link rel="canonical" href="https://origine-cultures.fr/">
+
+<!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://origine-cultures.fr/">
+<meta property="og:title" content="Origine & Cultures — Explorer les cultures du monde">
+<meta property="og:description" content="Association culturelle d'Île-de-France. Découvrez nos expositions et voyages photographiques.">
+<meta property="og:image" content="https://origine-cultures.fr/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Origine & Cultures">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Origine & Cultures">
+<meta name="twitter:description" content="Association culturelle d'Île-de-France. Explorer, partager, transmettre les cultures du monde.">
+<meta name="twitter:image" content="https://origine-cultures.fr/og-image.jpg">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+
+<!-- Structured Data : Organization (JSON-LD pour Google) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  "name": "Origine & Cultures",
+  "alternateName": "O&C",
+  "description": "Association culturelle d'Île-de-France dédiée à la découverte et au partage des cultures du monde.",
+  "url": "https://origine-cultures.fr",
+  "logo": "https://origine-cultures.fr/icon-512.png",
+  "email": "originecultures@outlook.fr",
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Île-de-France"
+  },
+  "sameAs": [
+    "https://www.instagram.com/originecultures"
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Marcellus&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
@@ -28,6 +80,81 @@
     font-weight: 300;
     overflow-x: hidden;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Skip link accessibilité */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--or);
+    color: var(--noir);
+    padding: 12px 20px;
+    z-index: 200;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: top 0.3s;
+  }
+  .skip-link:focus {
+    top: 0;
+  }
+
+  /* Focus visible cohérent */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--or);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  /* Scroll progress bar (en haut de page) */
+  .scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(201,168,76,0.1);
+    z-index: 200;
+  }
+  .scroll-progress-bar {
+    height: 100%;
+    background: var(--or);
+    width: 0;
+    transition: width 0.1s ease;
+    transform-origin: left;
+  }
+
+  /* Loader initial */
+  .page-loader {
+    position: fixed;
+    inset: 0;
+    background: var(--noir);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s ease, visibility 0.6s;
+  }
+  .page-loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .page-loader-logo {
+    font-family: 'Marcellus', serif;
+    font-size: 28px;
+    letter-spacing: 0.3em;
+    color: var(--or);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
   }
 
   .cursor, .cursor-ring { display: none; }
@@ -201,15 +328,21 @@
   .insta-tile {
     aspect-ratio: 1;
     background: #111;
-    background-size: cover;
-    background-position: center;
     position: relative;
     overflow: hidden;
     transition: transform 0.4s ease;
+    display: block;
   }
 
-  .insta-tile:hover {
-    transform: scale(0.98);
+  .insta-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .insta-tile:hover img {
+    transform: scale(1.08);
   }
 
   .insta-tile::after {
@@ -411,71 +544,84 @@
   }
   .galerie-item:not(:first-child) { aspect-ratio: 1/1; }
 
-  /* La 4ème photo prend les 2 colonnes restantes en bas */
   .galerie-item:nth-child(4) {
     grid-column: span 2;
     aspect-ratio: 2/1;
   }
 
-  .galerie-placeholder {
-    width: 100%; height: 100%;
-    background: linear-gradient(135deg, #1f1f1f 0%, #2a2a2a 50%, #1a1a1a 100%);
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 20px; transition: all 0.5s ease; position: relative;
+  .galerie-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+    display: block;
   }
 
-  /* Assombrir l'image pour lisibilité du texte */
-  .galerie-placeholder::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+  .galerie-item:hover .galerie-img {
+    transform: scale(1.05);
+    filter: brightness(0.85);
+  }
+
+  .galerie-overlay-content {
+    position: absolute;
+    inset: 0;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
     pointer-events: none;
-    transition: opacity 0.5s ease;
-  }
-
-  .galerie-item > .galerie-placeholder > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  .galerie-item:hover .galerie-placeholder::before {
-    opacity: 0.6;
-  }
-  .galerie-item:hover .galerie-placeholder,
-  .galerie-item:active .galerie-placeholder {
-    background: linear-gradient(135deg, #252510 0%, #2a2510 50%, #1a1a0a 100%);
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 40%, transparent 60%, rgba(0,0,0,0.4) 100%);
   }
 
   .galerie-num {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 56px; font-weight: 300;
-    color: rgba(201,168,76,0.1);
-    position: absolute; top: 12px; right: 16px; line-height: 1;
+    font-size: 48px; font-weight: 300;
+    color: var(--or);
+    line-height: 1;
+    align-self: flex-end;
+    opacity: 0.9;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+  }
+
+  .galerie-info {
+    margin-top: auto;
   }
 
   .galerie-tag {
     font-size: 9px; letter-spacing: 0.3em;
     text-transform: uppercase; color: var(--or);
-    opacity: 0.7; margin-bottom: 6px;
+    margin-bottom: 6px;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.8);
   }
   .galerie-caption {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 15px; color: var(--ivoire);
+    font-size: 18px; color: var(--ivoire);
     font-style: italic; line-height: 1.3;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
   }
 
-  .galerie-overlay {
-    position: absolute; inset: 0;
-    background: rgba(201,168,76,0.08);
-    opacity: 0; transition: opacity 0.4s;
-    display: flex; align-items: center; justify-content: center;
+  .galerie-cta {
+    position: absolute;
+    bottom: 24px; right: 24px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
   }
-  .galerie-item:hover .galerie-overlay { opacity: 1; }
+  .galerie-item:hover .galerie-cta {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
   .qr-hint {
     border: 1px solid var(--or);
     padding: 10px 16px; font-size: 10px;
-    letter-spacing: 0.25em; text-transform: uppercase; color: var(--or);
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--or);
+    background: rgba(26,26,26,0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
   .qr-concept {
@@ -768,19 +914,16 @@
     .galerie-item:nth-child(4) {
       grid-column: auto; grid-row: auto; aspect-ratio: 4/3;
     }
-    .galerie-num { font-size: 44px; }
-    .galerie-caption { font-size: 16px; }
+    .galerie-num { font-size: 40px; }
+    .galerie-caption { font-size: 17px; }
 
-    /* Sur mobile, overlay tjs visible (pas de hover) */
-    .galerie-overlay {
+    /* Sur mobile, le CTA est toujours visible */
+    .galerie-cta {
       opacity: 1;
-      background: linear-gradient(to top, rgba(0,0,0,0.4), transparent 50%);
-      align-items: flex-start; justify-content: flex-end;
-      padding: 16px;
+      transform: translateY(0);
+      bottom: 20px; right: 20px;
     }
-    .galerie-item .qr-hint {
-      align-self: flex-start; font-size: 9px; padding: 8px 12px;
-    }
+    .qr-hint { font-size: 9px; padding: 8px 12px; }
 
     .qr-concept { padding: 28px 20px; }
     .qr-text h3 { font-size: 22px; }
@@ -824,8 +967,22 @@
     }
   }
 </style>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="aebc8cfb-e38f-4abb-b23f-bcfecf01bcb6"></script>
 </head>
 <body>
+
+<!-- Loader initial -->
+<div class="page-loader" id="pageLoader">
+  <div class="page-loader-logo">O&C</div>
+</div>
+
+<!-- Skip link (accessibilité) -->
+<a href="#main" class="skip-link">Aller au contenu</a>
+
+<!-- Scroll progress bar -->
+<div class="scroll-progress">
+  <div class="scroll-progress-bar" id="scrollProgress"></div>
+</div>
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -855,6 +1012,7 @@
 </div>
 
 <div class="hero" id="hero">
+  <main id="main">
   <div class="hero-bg"></div>
   <div class="hero-grid" id="heroGrid"></div>
   <p class="hero-eyebrow">Association · Île-de-France</p>
@@ -923,37 +1081,61 @@
     </div>
 
     <div class="galerie-grid reveal">
-      <a href="photo-01.html" class="galerie-item">
-        <div class="galerie-placeholder" style="background-image: url('photos/IMG_1728.jpeg'); background-size: cover; background-position: center;">
+      <a href="photo-01.html" class="galerie-item" aria-label="Photo 01 - La nuit où Dakar a vibré, Sénégal">
+        <picture>
+          <source type="image/webp" srcset="photos/IMG_1728-sm.webp 640w, photos/IMG_1728-md.webp 1024w" sizes="(max-width: 640px) 100vw, 50vw">
+          <img src="photos/IMG_1728-md.jpg" srcset="photos/IMG_1728-sm.jpg 640w, photos/IMG_1728-md.jpg 1024w" sizes="(max-width: 640px) 100vw, 50vw" alt="La nuit où Dakar a vibré" loading="lazy" decoding="async" class="galerie-img">
+        </picture>
+        <div class="galerie-overlay-content">
           <div class="galerie-num">01</div>
-          <div class="galerie-tag">Sénégal · CAN 2025</div>
-          <div class="galerie-caption">La nuit où Dakar a vibré</div>
+          <div class="galerie-info">
+            <div class="galerie-tag">Sénégal · CAN 2025</div>
+            <div class="galerie-caption">La nuit où Dakar a vibré</div>
+          </div>
+          <div class="galerie-cta"><div class="qr-hint">Voir la fiche →</div></div>
         </div>
-        <div class="galerie-overlay"><div class="qr-hint">Voir la fiche →</div></div>
       </a>
-      <a href="photo-02.html" class="galerie-item">
-        <div class="galerie-placeholder" style="background-image: url('photos/IMG_1729.jpeg'); background-size: cover; background-position: center;">
+      <a href="photo-02.html" class="galerie-item" aria-label="Photo 02 - Les petits Pères Noël de Babi, Côte d'Ivoire">
+        <picture>
+          <source type="image/webp" srcset="photos/IMG_1729-sm.webp 640w, photos/IMG_1729-md.webp 1024w" sizes="(max-width: 640px) 100vw, 25vw">
+          <img src="photos/IMG_1729-md.jpg" srcset="photos/IMG_1729-sm.jpg 640w, photos/IMG_1729-md.jpg 1024w" sizes="(max-width: 640px) 100vw, 25vw" alt="Les petits Pères Noël de Babi" loading="lazy" decoding="async" class="galerie-img">
+        </picture>
+        <div class="galerie-overlay-content">
           <div class="galerie-num">02</div>
-          <div class="galerie-tag">Côte d'Ivoire · Noël</div>
-          <div class="galerie-caption">Les petits Pères Noël de Babi</div>
+          <div class="galerie-info">
+            <div class="galerie-tag">Côte d'Ivoire · Noël</div>
+            <div class="galerie-caption">Les petits Pères Noël de Babi</div>
+          </div>
+          <div class="galerie-cta"><div class="qr-hint">Voir la fiche →</div></div>
         </div>
-        <div class="galerie-overlay"><div class="qr-hint">Voir la fiche →</div></div>
       </a>
-      <a href="photo-03.html" class="galerie-item">
-        <div class="galerie-placeholder" style="background-image: url('photos/IMG_1711.jpeg'); background-size: cover; background-position: center;">
+      <a href="photo-03.html" class="galerie-item" aria-label="Photo 03 - Les femmes d'ocre, Namibie">
+        <picture>
+          <source type="image/webp" srcset="photos/IMG_1711-sm.webp 640w, photos/IMG_1711-md.webp 1024w" sizes="(max-width: 640px) 100vw, 25vw">
+          <img src="photos/IMG_1711-md.jpg" srcset="photos/IMG_1711-sm.jpg 640w, photos/IMG_1711-md.jpg 1024w" sizes="(max-width: 640px) 100vw, 25vw" alt="Les femmes d'ocre" loading="lazy" decoding="async" class="galerie-img">
+        </picture>
+        <div class="galerie-overlay-content">
           <div class="galerie-num">03</div>
-          <div class="galerie-tag">Namibie · Peuple Himba</div>
-          <div class="galerie-caption">Les femmes d'ocre</div>
+          <div class="galerie-info">
+            <div class="galerie-tag">Namibie · Peuple Himba</div>
+            <div class="galerie-caption">Les femmes d'ocre</div>
+          </div>
+          <div class="galerie-cta"><div class="qr-hint">Voir la fiche →</div></div>
         </div>
-        <div class="galerie-overlay"><div class="qr-hint">Voir la fiche →</div></div>
       </a>
-      <a href="photo-04.html" class="galerie-item">
-        <div class="galerie-placeholder" style="background-image: url('photos/DSC06564.jpeg'); background-size: cover; background-position: center;">
+      <a href="photo-04.html" class="galerie-item" aria-label="Photo 04 - Oumé, l'horizon devant, Guinée">
+        <picture>
+          <source type="image/webp" srcset="photos/DSC06564-sm.webp 640w, photos/DSC06564-md.webp 1024w" sizes="(max-width: 640px) 100vw, 50vw">
+          <img src="photos/DSC06564-md.jpg" srcset="photos/DSC06564-sm.jpg 640w, photos/DSC06564-md.jpg 1024w" sizes="(max-width: 640px) 100vw, 50vw" alt="Oumé, l'horizon devant" loading="lazy" decoding="async" class="galerie-img">
+        </picture>
+        <div class="galerie-overlay-content">
           <div class="galerie-num">04</div>
-          <div class="galerie-tag">Guinée · Portrait</div>
-          <div class="galerie-caption">Oumé, l'horizon devant</div>
+          <div class="galerie-info">
+            <div class="galerie-tag">Guinée · Portrait</div>
+            <div class="galerie-caption">Oumé, l'horizon devant</div>
+          </div>
+          <div class="galerie-cta"><div class="qr-hint">Voir la fiche →</div></div>
         </div>
-        <div class="galerie-overlay"><div class="qr-hint">Voir la fiche →</div></div>
       </a>
     </div>
 
@@ -979,7 +1161,7 @@
         <p class="section-label">Sur Instagram</p>
         <h2 class="insta-title">L'aventure<br>en <em>continu</em></h2>
         <p class="insta-desc">Les coulisses des voyages, les rencontres marquantes, les instants volés et les prochains projets. Suivez le récit visuel d'Origine & Cultures au fil des jours.</p>
-        <a href="https://www.instagram.com/originecultures" target="_blank" rel="noopener" class="insta-cta">
+        <a href="https://www.instagram.com/originecultures" target="_blank" rel="noopener" class="insta-cta" data-umami-event="Clic Instagram - Section">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           <span>Suivre sur Instagram</span>
         </a>
@@ -987,14 +1169,39 @@
       </div>
 
       <div class="insta-mosaic reveal" style="transition-delay: 0.2s">
-        <a href="https://www.instagram.com/originecultures" target="_blank" rel="noopener" class="insta-tile" style="background-image: url('photos/IMG_1728.jpeg');"></a>
-        <a href="https://www.instagram.com/originecultures" target="_blank" rel="noopener" class="insta-tile" style="background-image: url('photos/IMG_1711.jpeg');"></a>
-        <a href="https://www.instagram.com/originecultures" target="_blank" rel="noopener" class="insta-tile" style="background-image: url('photos/IMG_1729.jpeg');"></a>
-        <a href="https://www.instagram.com/originecultures" target="_blank" rel="noopener" class="insta-tile" style="background-image: url('photos/DSC06564.jpeg');"></a>
+        <a href="https://www.instagram.com/originecultures" target="_blank" rel="noopener" class="insta-tile">
+          <picture>
+            <source type="image/webp" srcset="photos/IMG_1728-sm.webp">
+            <img src="photos/IMG_1728-sm.jpg" alt="" loading="lazy" decoding="async">
+          </picture>
+        </a>
+        <a href="https://www.instagram.com/originecultures" target="_blank" rel="noopener" class="insta-tile">
+          <picture>
+            <source type="image/webp" srcset="photos/IMG_1711-sm.webp">
+            <img src="photos/IMG_1711-sm.jpg" alt="" loading="lazy" decoding="async">
+          </picture>
+        </a>
+        <a href="https://www.instagram.com/originecultures" target="_blank" rel="noopener" class="insta-tile">
+          <picture>
+            <source type="image/webp" srcset="photos/IMG_1729-sm.webp">
+            <img src="photos/IMG_1729-sm.jpg" alt="" loading="lazy" decoding="async">
+          </picture>
+        </a>
+        <a href="https://www.instagram.com/originecultures" target="_blank" rel="noopener" class="insta-tile">
+          <picture>
+            <source type="image/webp" srcset="photos/DSC06564-sm.webp">
+            <img src="photos/DSC06564-sm.jpg" alt="" loading="lazy" decoding="async">
+          </picture>
+        </a>
         <a href="https://www.instagram.com/originecultures" target="_blank" rel="noopener" class="insta-tile center" aria-label="Voir tous les posts">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         </a>
-        <a href="https://www.instagram.com/originecultures" target="_blank" rel="noopener" class="insta-tile" style="background-image: url('photos/IMG_1728.jpeg'); background-position: center bottom;"></a>
+        <a href="https://www.instagram.com/originecultures" target="_blank" rel="noopener" class="insta-tile">
+          <picture>
+            <source type="image/webp" srcset="photos/IMG_1728-sm.webp">
+            <img src="photos/IMG_1728-sm.jpg" alt="" loading="lazy" decoding="async">
+          </picture>
+        </a>
       </div>
     </div>
   </div>
@@ -1073,6 +1280,8 @@
   </div>
 </section>
 
+</main>
+
 <footer>
   <div class="footer-logo">Origine & Cultures</div>
   <div class="footer-social">
@@ -1087,6 +1296,35 @@
 </footer>
 
 <script>
+  // ===== Page loader =====
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('pageLoader');
+    if (loader) {
+      setTimeout(() => loader.classList.add('hidden'), 300);
+      setTimeout(() => loader.remove(), 900);
+    }
+  });
+
+  // ===== Scroll progress bar =====
+  const scrollProgress = document.getElementById('scrollProgress');
+  if (scrollProgress) {
+    const updateProgress = () => {
+      const scroll = window.scrollY;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? (scroll / max) * 100 : 0;
+      scrollProgress.style.width = pct + '%';
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  }
+
+  // ===== Haptic feedback léger sur boutons clés (smartphone) =====
+  const hapticElements = document.querySelectorAll('.btn-submit, .nav-cta, .galerie-item, .insta-cta, .nav-insta');
+  hapticElements.forEach(el => {
+    el.addEventListener('touchstart', () => {
+      if ('vibrate' in navigator) navigator.vibrate(10);
+    }, { passive: true });
+  });
   // Hero grid (allégée sur mobile)
   const heroGrid = document.getElementById('heroGrid');
   if (heroGrid) {
@@ -1178,6 +1416,8 @@
           formStatus.classList.add('show', 'success');
           contactForm.reset();
           if (btnText) btnText.textContent = 'Envoyer';
+          // Tracking Umami
+          if (window.umami) window.umami.track('Formulaire contact envoyé');
         } else {
           throw new Error('Erreur réseau');
         }

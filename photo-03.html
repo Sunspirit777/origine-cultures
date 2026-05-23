@@ -4,7 +4,37 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <meta name="theme-color" content="#1A1A1A">
-<title>Les femmes d'ocre — Regards sur l'Afrique · O&amp;C</title>
+<meta name="color-scheme" content="dark">
+
+<!-- SEO -->
+<title>Les femmes d'ocre — Namibie · Regards sur l'Afrique · O&amp;C</title>
+<meta name="description" content="Aux abords de Windhoek, capitale namibienne, j'ai croisé la route de ces femmes du peuple Himba. Leur peau et leurs cheveux sont enduits d'une pâte rouge…">
+<link rel="canonical" href="https://origine-cultures.fr/photo-03.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://origine-cultures.fr/photo-03.html">
+<meta property="og:title" content="Les femmes d'ocre — Namibie">
+<meta property="og:description" content="Aux abords de Windhoek, capitale namibienne, j'ai croisé la route de ces femmes du peuple Himba. Leur peau et leurs cheveux sont enduits d'une pâte rouge…">
+<meta property="og:image" content="https://origine-cultures.fr/photos/IMG_1711-md.jpg">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Origine & Cultures">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Les femmes d'ocre">
+<meta name="twitter:description" content="Aux abords de Windhoek, capitale namibienne, j'ai croisé la route de ces femmes du peuple Himba. Leur peau et leurs cheveux sont enduits d'une pâte rouge…">
+<meta name="twitter:image" content="https://origine-cultures.fr/photos/IMG_1711-md.jpg">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+
+<!-- Umami Analytics -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="aebc8cfb-e38f-4abb-b23f-bcfecf01bcb6"></script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Marcellus&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
@@ -64,9 +94,13 @@
     overflow: hidden;
   }
 
-  .photo-hero img {
+  .photo-hero picture, .photo-hero img {
     width: 100%;
     height: 100%;
+    display: block;
+  }
+
+  .photo-hero img {
     object-fit: cover;
     object-position: center;
     opacity: 0;
@@ -455,7 +489,10 @@
 </nav>
 
 <div class="photo-hero">
-  <img src="photos/IMG_1711.jpeg" alt="Les femmes d'ocre" loading="eager">
+  <picture>
+    <source type="image/webp" srcset="photos/IMG_1711-sm.webp 640w, photos/IMG_1711-md.webp 1024w, photos/IMG_1711-lg.webp 1600w" sizes="100vw">
+    <img src="photos/IMG_1711-md.jpg" srcset="photos/IMG_1711-sm.jpg 640w, photos/IMG_1711-md.jpg 1024w, photos/IMG_1711-lg.jpg 1600w" sizes="100vw" alt="Les femmes d'ocre" fetchpriority="high" decoding="async">
+  </picture>
   <div class="photo-hero-info">
     <div class="photo-num-badge">
       <div class="num">03</div>
@@ -524,7 +561,7 @@
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
     </a>
   </div>
-  <div class="footer-copy">Association Île-de-France · © 2026</div>
+  <div class="footer-copy">Association Île-de-France · © 2025</div>
 </footer>
 
 <script>
