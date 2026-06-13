@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1A1A1A">
+<meta name="color-scheme" content="dark">
+
+<!-- SEO -->
+<title>Regards sur l'Afrique — Exposition immersive · Origine & Cultures</title>
+<meta name="description" content="Exposition photographique immersive : Sénégal, Côte d'Ivoire, Namibie, Guinée. Quatre regards, quatre histoires capturées par le président d'Origine & Cultures.">
+<link rel="canonical" href="https://origine-cultures.fr/galerie.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://origine-cultures.fr/galerie.html">
+<meta property="og:title" content="Regards sur l'Afrique — Exposition immersive">
+<meta property="og:description" content="Quatre photographies, quatre histoires. Une traversée du continent africain.">
+<meta property="og:image" content="https://origine-cultures.fr/photos/IMG_1728-md.jpg">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Origine & Cultures">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://origine-cultures.fr/photos/IMG_1728-md.jpg">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+
+<!-- Préchargement première photo (LCP) -->
+<link rel="preload" as="image" href="photos/IMG_1728-md.webp" type="image/webp" media="(max-width: 1024px)">
+
+<!-- Umami Analytics -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="aebc8cfb-e38f-4abb-b23f-bcfecf01bcb6"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Marcellus&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --noir: #1A1A1A;
+    --noir-carte: #2E2E2E;
+    --or: #C9A84C;
+    --or-clair: #D4B86A;
+    --ivoire: #F5F0E8;
+    --ivoire-sombre: #D6CFBE;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--noir);
+    color: var(--ivoire);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ============ SCROLL CONTAINER ============ */
+  .expo {
+    height: 100vh;
+    height: 100svh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+  }
+  .expo::-webkit-scrollbar { display: none; }
+
+  .slide {
+    height: 100vh;
+    height: 100svh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ============ HUD (nav + progress) ============ */
+  .hud-top {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    padding: calc(16px + var(--safe-top)) 20px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(26,26,26,0.7), transparent);
+    pointer-events: none;
+  }
+  .hud-top > * { pointer-events: auto; }
+
+  .hud-logo {
+    font-family: 'Marcellus', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--or);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .hud-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; height: 40px;
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 50%;
+    color: var(--ivoire);
+    text-decoration: none;
+    font-size: 16px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(26,26,26,0.3);
+    transition: all 0.3s;
+  }
+  .hud-close:hover { border-color: var(--or); color: var(--or); }
+
+  /* Progress segments (verticaux à droite) */
+  .progress-rail {
+    position: fixed;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .progress-seg {
+    width: 2px;
+    height: 26px;
+    background: rgba(245,240,232,0.18);
+    border-radius: 2px;
+    transition: background 0.4s, height 0.4s;
+  }
+  .progress-seg.active {
+    background: var(--or);
+    height: 40px;
+  }
+
+  /* ============ SLIDE INTRO ============ */
+  .slide-intro {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 28px;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+      var(--noir);
+  }
+
+  .intro-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--or);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+
+  .intro-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(44px, 11vw, 96px);
+    font-weight: 300;
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.55s forwards;
+  }
+  .intro-title em { color: var(--or); font-style: italic; }
+
+  .intro-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(15px, 4vw, 20px);
+    font-style: italic;
+    color: var(--ivoire-sombre);
+    max-width: 480px;
+    margin: 0 auto 48px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.8s forwards;
+  }
+
+  .intro-countries {
+    display: flex;
+    gap: 22px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 1s ease 1s forwards;
+  }
+  .intro-country {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ivoire-sombre);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .intro-country::before {
+    content: '';
+    width: 5px; height: 5px;
+    background: var(--or);
+    border-radius: 50%;
+  }
+
+  .intro-scroll-hint {
+    position: absolute;
+    bottom: calc(36px + var(--safe-bottom));
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.3s forwards;
+  }
+  .intro-scroll-hint span {
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--or);
+  }
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--or), transparent);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: var(--ivoire);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0% { top: -50%; }
+    100% { top: 110%; }
+  }
+
+  /* ============ SLIDES PHOTO ============ */
+  .slide-photo .photo-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .slide-photo picture,
+  .slide-photo .photo-bg img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .slide-photo .photo-bg img {
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.08);
+    transition: transform 1.2s ease-out;
+    will-change: transform;
+  }
+  .slide-photo.in-view .photo-bg img {
+    transform: scale(1.06);
+  }
+
+  /* Actions flottantes par slide (son + partage) */
+  .photo-actions {
+    position: absolute;
+    top: calc(70px + var(--safe-top));
+    right: 16px;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0;
+    transform: translateX(12px);
+    transition: opacity 0.8s ease 0.5s, transform 0.8s ease 0.5s;
+  }
+  .slide-photo.in-view .photo-actions { opacity: 1; transform: translateX(0); }
+
+  .photo-action-btn {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.4);
+    background: rgba(26,26,26,0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--ivoire);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 0;
+  }
+  .photo-action-btn:hover, .photo-action-btn:active {
+    border-color: var(--or);
+    color: var(--or);
+  }
+  .photo-action-btn svg { width: 18px; height: 18px; }
+
+  /* État actif du son */
+  .photo-action-btn.sound-on {
+    border-color: var(--or);
+    color: var(--noir);
+    background: var(--or);
+  }
+  /* Onde sonore animée quand actif */
+  .photo-action-btn.sound-on .wave { animation: soundWave 1.2s ease-in-out infinite; transform-origin: center; }
+  @keyframes soundWave {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* Toast feedback (copie lien, etc.) */
+  .toast {
+    position: fixed;
+    bottom: calc(40px + var(--safe-bottom));
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(26,26,26,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--ivoire);
+    padding: 14px 24px;
+    border-radius: 100px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    z-index: 120;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    white-space: nowrap;
+  }
+  .toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* Voile gradient pour lisibilité */
+  .slide-photo .veil {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom,
+        rgba(26,26,26,0.55) 0%,
+        transparent 22%,
+        transparent 52%,
+        rgba(26,26,26,0.82) 88%,
+        rgba(26,26,26,0.94) 100%);
+    pointer-events: none;
+  }
+
+  /* Infos en bas de slide */
+  .photo-info {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 0;
+    padding: 0 24px calc(30px + var(--safe-bottom));
+    z-index: 5;
+  }
+
+  .photo-num-line {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease 0.15s, transform 0.8s ease 0.15s;
+  }
+  .slide-photo.in-view .photo-num-line { opacity: 1; transform: translateY(0); }
+
+  .photo-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--or);
+    line-height: 1;
+  }
+  .photo-country {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ivoire-sombre);
+  }
+  .photo-flag { font-size: 16px; }
+
+  .photo-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 7.5vw, 56px);
+    font-weight: 300;
+    line-height: 1.08;
+    color: var(--ivoire);
+    margin-bottom: 8px;
+    text-shadow: 0 2px 24px rgba(0,0,0,0.5);
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+  }
+  .slide-photo.in-view .photo-title { opacity: 1; transform: translateY(0); }
+
+  .photo-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(14px, 3.6vw, 18px);
+    font-style: italic;
+    color: var(--ivoire-sombre);
+    margin-bottom: 22px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease 0.42s, transform 0.8s ease 0.42s;
+  }
+  .slide-photo.in-view .photo-sub { opacity: 1; transform: translateY(0); }
+
+  .story-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(26,26,26,0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(201,168,76,0.55);
+    color: var(--or);
+    padding: 14px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-height: 46px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease 0.54s, transform 0.8s ease 0.54s, background 0.3s, color 0.3s;
+  }
+  .slide-photo.in-view .story-btn { opacity: 1; transform: translateY(0); }
+  .story-btn:hover, .story-btn:active {
+    background: var(--or);
+    color: var(--noir);
+  }
+  .story-btn .icon { font-size: 14px; }
+
+  /* ============ BOTTOM SHEET HISTOIRE ============ */
+  .sheet-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,10,10,0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 90;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s;
+  }
+  .sheet-backdrop.open { opacity: 1; visibility: visible; }
+
+  .sheet {
+    position: fixed;
+    left: 0; right: 0;
+    bottom: 0;
+    z-index: 100;
+    background: rgba(26,26,26,0.92);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    border-top: 1px solid rgba(201,168,76,0.35);
+    border-radius: 22px 22px 0 0;
+    max-height: 82vh;
+    max-height: 82svh;
+    transform: translateY(105%);
+    transition: transform 0.55s cubic-bezier(0.32, 0.72, 0, 1);
+    display: flex;
+    flex-direction: column;
+  }
+  .sheet.open { transform: translateY(0); }
+
+  .sheet-handle {
+    width: 44px;
+    height: 4px;
+    background: rgba(245,240,232,0.25);
+    border-radius: 4px;
+    margin: 14px auto 4px;
+    flex-shrink: 0;
+  }
+
+  .sheet-head {
+    padding: 10px 26px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    flex-shrink: 0;
+  }
+
+  .sheet-head-info { display: flex; align-items: baseline; gap: 12px; }
+  .sheet-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--or);
+    line-height: 1;
+  }
+  .sheet-title-mini {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--ivoire);
+  }
+
+  .sheet-close {
+    width: 34px; height: 34px;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 50%;
+    background: none;
+    color: var(--ivoire-sombre);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex-shrink: 0;
+  }
+  .sheet-close:hover { color: var(--or); border-color: var(--or); }
+
+  .sheet-body {
+    overflow-y: auto;
+    padding: 26px 26px calc(34px + var(--safe-bottom));
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sheet-label {
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--or);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .sheet-label::after {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--or);
+    opacity: 0.5;
+  }
+
+  .sheet-lead {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--ivoire);
+    margin-bottom: 30px;
+  }
+
+  .sheet-quote {
+    border-left: 1px solid var(--or);
+    padding-left: 20px;
+    margin-bottom: 30px;
+  }
+  .sheet-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--ivoire);
+  }
+
+  .sheet-context {
+    font-size: 13.5px;
+    line-height: 1.85;
+    color: var(--ivoire-sombre);
+  }
+
+  /* ============ SLIDE FINALE ============ */
+  .slide-outro {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 28px;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 35%, rgba(201,168,76,0.08) 0%, transparent 70%),
+      linear-gradient(170deg, var(--noir) 0%, #211d14 130%);
+  }
+
+  .outro-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--or);
+    margin-bottom: 24px;
+  }
+
+  .outro-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 8vw, 64px);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .outro-title em { color: var(--or); font-style: italic; }
+
+  .outro-text {
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--ivoire-sombre);
+    max-width: 440px;
+    margin: 0 auto 40px;
+  }
+
+  .outro-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    max-width: 330px;
+  }
+
+  .outro-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 17px 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+    min-height: 52px;
+  }
+  .outro-btn.primary {
+    background: var(--or);
+    color: var(--noir);
+    border: 1px solid var(--or);
+    font-weight: 500;
+  }
+  .outro-btn.primary:hover { background: transparent; color: var(--or); }
+  .outro-btn.ghost {
+    background: transparent;
+    color: var(--or);
+    border: 1px solid rgba(201,168,76,0.5);
+  }
+  .outro-btn.ghost:hover { background: var(--or); color: var(--noir); }
+
+  .outro-home {
+    margin-top: 28px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ivoire-sombre);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .outro-home:hover { color: var(--or); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============ DESKTOP ============ */
+  @media (min-width: 900px) {
+    .photo-info { padding: 0 64px 56px; max-width: 980px; }
+    .progress-rail { right: 28px; }
+    .sheet {
+      left: 50%;
+      right: auto;
+      width: 560px;
+      transform: translate(-50%, 105%);
+      border-radius: 22px 22px 0 0;
+    }
+    .sheet.open { transform: translate(-50%, 0); }
+    .outro-actions { flex-direction: row; max-width: none; justify-content: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+    .slide-photo .photo-bg img { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HUD -->
+<div class="hud-top">
+  <a href="index.html" class="hud-logo">O&C</a>
+  <a href="index.html" class="hud-close" aria-label="Fermer la galerie">✕</a>
+</div>
+
+<!-- Progress -->
+<div class="progress-rail" id="progressRail">
+  <div class="progress-seg active" data-i="0"></div>
+  <div class="progress-seg" data-i="1"></div>
+  <div class="progress-seg" data-i="2"></div>
+  <div class="progress-seg" data-i="3"></div>
+  <div class="progress-seg" data-i="4"></div>
+  <div class="progress-seg" data-i="5"></div>
+</div>
+
+<!-- EXPO -->
+<div class="expo" id="expo">
+
+  <!-- SLIDE 0 : INTRO -->
+  <section class="slide slide-intro" data-index="0" id="intro">
+    <p class="intro-eyebrow">Exposition · 2026</p>
+    <h1 class="intro-title">Regards<br>sur l'<em>Afrique</em></h1>
+    <p class="intro-sub">Quatre photographies, quatre pays, quatre histoires.<br>Une traversée intime du continent.</p>
+    <div class="intro-countries">
+      <span class="intro-country">Sénégal</span>
+      <span class="intro-country">Côte d'Ivoire</span>
+      <span class="intro-country">Namibie</span>
+      <span class="intro-country">Guinée</span>
+    </div>
+    <div class="intro-scroll-hint">
+      <span>Faites défiler</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- SLIDE 1 : SÉNÉGAL -->
+  <section class="slide slide-photo" data-index="1" id="photo-01">
+    <div class="photo-bg">
+      <picture>
+        <source type="image/webp" srcset="photos/IMG_1728-sm.webp 640w, photos/IMG_1728-md.webp 1024w, photos/IMG_1728-lg.webp 1600w" sizes="100vw">
+        <img src="photos/IMG_1728-md.jpg" srcset="photos/IMG_1728-sm.jpg 640w, photos/IMG_1728-md.jpg 1024w, photos/IMG_1728-lg.jpg 1600w" sizes="100vw" alt="La nuit où Dakar a vibré" fetchpriority="high" decoding="async">
+      </picture>
+    </div>
+    <div class="veil"></div>
+    <div class="photo-info">
+      <div class="photo-num-line">
+        <span class="photo-num">01</span>
+        <span class="photo-country">Sénégal</span>
+        <span class="photo-flag">🇸🇳</span>
+      </div>
+      <h2 class="photo-title">La nuit où Dakar a vibré</h2>
+      <p class="photo-sub">CAN 2025 — victoire des Lions de la Téranga</p>
+      <button class="story-btn" data-story="0" data-umami-event="Galerie - Histoire 01">
+        <span class="icon">✦</span> Lire l'histoire
+      </button>
+    </div>
+  </section>
+
+  <!-- SLIDE 2 : CÔTE D'IVOIRE -->
+  <section class="slide slide-photo" data-index="2" id="photo-02">
+    <div class="photo-bg">
+      <picture>
+        <source type="image/webp" srcset="photos/IMG_1729-sm.webp 640w, photos/IMG_1729-md.webp 1024w, photos/IMG_1729-lg.webp 1600w" sizes="100vw">
+        <img src="photos/IMG_1729-md.jpg" srcset="photos/IMG_1729-sm.jpg 640w, photos/IMG_1729-md.jpg 1024w, photos/IMG_1729-lg.jpg 1600w" sizes="100vw" alt="Les petits Pères Noël de Babi" loading="lazy" decoding="async">
+      </picture>
+    </div>
+    <div class="veil"></div>
+    <div class="photo-info">
+      <div class="photo-num-line">
+        <span class="photo-num">02</span>
+        <span class="photo-country">Côte d'Ivoire</span>
+        <span class="photo-flag">🇨🇮</span>
+      </div>
+      <h2 class="photo-title">Les petits Pères Noël de Babi</h2>
+      <p class="photo-sub">Une tradition de rue à Abidjan</p>
+      <button class="story-btn" data-story="1" data-umami-event="Galerie - Histoire 02">
+        <span class="icon">✦</span> Lire l'histoire
+      </button>
+    </div>
+  </section>
+
+  <!-- SLIDE 3 : NAMIBIE -->
+  <section class="slide slide-photo" data-index="3" id="photo-03">
+    <div class="photo-bg">
+      <picture>
+        <source type="image/webp" srcset="photos/IMG_1711-sm.webp 640w, photos/IMG_1711-md.webp 1024w, photos/IMG_1711-lg.webp 1600w" sizes="100vw">
+        <img src="photos/IMG_1711-md.jpg" srcset="photos/IMG_1711-sm.jpg 640w, photos/IMG_1711-md.jpg 1024w, photos/IMG_1711-lg.jpg 1600w" sizes="100vw" alt="Les femmes d'ocre" loading="lazy" decoding="async">
+      </picture>
+    </div>
+    <div class="veil"></div>
+    <div class="photo-info">
+      <div class="photo-num-line">
+        <span class="photo-num">03</span>
+        <span class="photo-country">Namibie</span>
+        <span class="photo-flag">🇳🇦</span>
+      </div>
+      <h2 class="photo-title">Les femmes d'ocre</h2>
+      <p class="photo-sub">Rencontre avec le peuple Himba</p>
+      <button class="story-btn" data-story="2" data-umami-event="Galerie - Histoire 03">
+        <span class="icon">✦</span> Lire l'histoire
+      </button>
+    </div>
+  </section>
+
+  <!-- SLIDE 4 : GUINÉE -->
+  <section class="slide slide-photo" data-index="4" id="photo-04">
+    <div class="photo-bg">
+      <picture>
+        <source type="image/webp" srcset="photos/DSC06564-sm.webp 640w, photos/DSC06564-md.webp 1024w, photos/DSC06564-lg.webp 1600w" sizes="100vw">
+        <img src="photos/DSC06564-md.jpg" srcset="photos/DSC06564-sm.jpg 640w, photos/DSC06564-md.jpg 1024w, photos/DSC06564-lg.jpg 1600w" sizes="100vw" alt="Oumé, l'horizon devant" loading="lazy" decoding="async">
+      </picture>
+    </div>
+    <div class="veil"></div>
+    <div class="photo-info">
+      <div class="photo-num-line">
+        <span class="photo-num">04</span>
+        <span class="photo-country">Guinée</span>
+        <span class="photo-flag">🇬🇳</span>
+      </div>
+      <h2 class="photo-title">Oumé, l'horizon devant</h2>
+      <p class="photo-sub">Un jeune pêcheur et ses rêves</p>
+      <button class="story-btn" data-story="3" data-umami-event="Galerie - Histoire 04">
+        <span class="icon">✦</span> Lire l'histoire
+      </button>
+    </div>
+  </section>
+
+  <!-- SLIDE 5 : OUTRO -->
+  <section class="slide slide-outro" data-index="5" id="fin">
+    <p class="outro-eyebrow">L'aventure continue</p>
+    <h2 class="outro-title">Faites partie<br>du <em>voyage</em></h2>
+    <p class="outro-text">Cette exposition n'est qu'un début. En rejoignant Origine & Cultures, vous soutenez les prochains voyages, les prochaines rencontres, les prochaines expositions.</p>
+    <div class="outro-actions">
+      <a href="adherer.html" class="outro-btn primary" data-umami-event="Galerie - CTA Adhérer">Adhérer · 20€/an</a>
+      <a href="https://www.instagram.com/originecultures" target="_blank" rel="noopener" class="outro-btn ghost" data-umami-event="Galerie - CTA Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Suivre l'aventure
+      </a>
+    </div>
+    <a href="index.html" class="outro-home">← Retour à l'accueil</a>
+  </section>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- BOTTOM SHEET -->
+<div class="sheet-backdrop" id="sheetBackdrop"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Histoire de la photographie">
+  <div class="sheet-handle"></div>
+  <div class="sheet-head">
+    <div class="sheet-head-info">
+      <span class="sheet-num" id="sheetNum">01</span>
+      <span class="sheet-title-mini" id="sheetTitle">—</span>
+    </div>
+    <button class="sheet-close" id="sheetClose" aria-label="Fermer">✕</button>
+  </div>
+  <div class="sheet-body" id="sheetBody"></div>
+</div>
+
+<script>
+  // ===== Données des histoires =====
+  const STORIES = [
+    {
+      num: "01",
+      title: "La nuit où Dakar a vibré",
+      lead: "Une marée humaine, des drapeaux jusqu'à perte de vue, des voitures abandonnées au milieu des avenues. Le Sénégal venait de l'emporter, et toute une ville s'est déversée dans la rue pour célébrer.",
+      quote: "J'y étais. Et franchement, c'était sans doute l'expérience la plus explosive que j'ai vécue en Afrique de l'Ouest — une ferveur que je n'avais jamais ressentie ailleurs.",
+      context: "La Coupe d'Afrique des Nations dépasse largement le cadre sportif au Sénégal : c'est une affaire de fierté nationale, d'unité, d'identité. Cette nuit-là, des inconnus se prenaient dans les bras, des chants montaient de partout, et le pays entier ne formait plus qu'un seul cœur."
+    },
+    {
+      num: "02",
+      title: "Les petits Pères Noël de Babi",
+      lead: "Le corps peint en blanc, le visage maquillé, ils déambulent dans les rues d'Abidjan le soir du 24 décembre. Les enfants et adolescents incarnent, à leur manière, l'esprit de Noël ivoirien.",
+      quote: "De l'argent ? Ouais, ils en ont demandé ! Mais leur véritable rôle, c'est de réchauffer les cœurs — de transformer chaque rue de Babi en théâtre de quartier le temps d'une nuit.",
+      context: "À Abidjan — surnommée Babi par ses habitants — Noël se vit dehors, dans la rue, en collectif. Cette tradition populaire mêle le sacré et le ludique, la quête et le don, et incarne une forme bien locale de célébration qu'on ne trouve nulle part ailleurs."
+    },
+    {
+      num: "03",
+      title: "Les femmes d'ocre",
+      lead: "Aux abords de Windhoek, capitale namibienne, j'ai croisé la route de ces femmes du peuple Himba. Leur peau et leurs cheveux sont enduits d'une pâte rouge caractéristique — l'otjize.",
+      quote: "Cette argile rouge, qu'elles appliquent depuis des générations, est un mélange de beurre tiré du lait de vache et de terre d'ocre. C'est à la fois une protection contre le soleil, un soin pour la peau, et un marqueur identitaire.",
+      context: "Les Himba sont l'un des derniers peuples semi-nomades d'Afrique australe à avoir conservé un mode de vie traditionnel. L'otjize n'est pas un simple ornement : c'est une signature culturelle, transmise de mère en fille, qui raconte à elle seule des siècles d'histoire."
+    },
+    {
+      num: "04",
+      title: "Oumé, l'horizon devant",
+      lead: "Oumé, jeune pêcheur guinéen, regarde au loin. Il nourrit de grands rêves d'aventure, d'ailleurs, d'avenir. La marée s'est retirée et les racines de la mangrove se déploient comme une carte vers l'inconnu.",
+      quote: "Avec mon guide, on a longuement échangé — sur nos visions parfois divergentes du « Bled » et de la France. Deux regards, deux trajectoires, et pourtant une même envie d'aller comprendre ce qu'il y a de l'autre côté.",
+      context: "La jeunesse africaine se trouve à un carrefour : entre attachement à la terre, fascination pour l'ailleurs, et construction d'un avenir qui ne ressemble ni tout à fait à celui des aînés, ni à celui qu'on imagine depuis l'Europe. Oumé, comme tant d'autres, incarne cette tension féconde."
+    }
+  ];
+
+  // ===== Observation des slides (animations + progress) =====
+  const slides = document.querySelectorAll('.slide');
+  const segs = document.querySelectorAll('.progress-seg');
+
+  const slideObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+        const idx = parseInt(e.target.dataset.index, 10);
+        segs.forEach((s, i) => s.classList.toggle('active', i === idx));
+        // Met à jour le hash sans scroll (pour partage)
+        if (e.target.id && history.replaceState) {
+          history.replaceState(null, '', '#' + e.target.id);
+        }
+      }
+    });
+  }, { threshold: 0.55 });
+  slides.forEach(s => slideObserver.observe(s));
+
+  // Tap sur un segment = aller au slide
+  segs.forEach(seg => {
+    seg.addEventListener('click', () => {
+      const i = parseInt(seg.dataset.i, 10);
+      const target = document.querySelector(`.slide[data-index="${i}"]`);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // ===== Bottom sheet =====
+  const sheet = document.getElementById('sheet');
+  const backdrop = document.getElementById('sheetBackdrop');
+  const sheetNum = document.getElementById('sheetNum');
+  const sheetTitle = document.getElementById('sheetTitle');
+  const sheetBody = document.getElementById('sheetBody');
+  const sheetClose = document.getElementById('sheetClose');
+
+  function openSheet(i) {
+    const s = STORIES[i];
+    if (!s) return;
+    sheetNum.textContent = s.num;
+    sheetTitle.textContent = s.title;
+    sheetBody.innerHTML = `
+      <p class="sheet-label">Le moment</p>
+      <p class="sheet-lead">${s.lead}</p>
+      <div class="sheet-quote">
+        <p class="sheet-label" style="margin-bottom:10px">Carnet de voyage</p>
+        <p>« ${s.quote} »</p>
+      </div>
+      <p class="sheet-label">Contexte</p>
+      <p class="sheet-context">${s.context}</p>
+    `;
+    sheet.classList.add('open');
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if ('vibrate' in navigator) navigator.vibrate(8);
+  }
+
+  function closeSheet() {
+    sheet.classList.remove('open');
+    backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.story-btn').forEach(btn => {
+    btn.addEventListener('click', () => openSheet(parseInt(btn.dataset.story, 10)));
+  });
+  sheetClose.addEventListener('click', closeSheet);
+  backdrop.addEventListener('click', closeSheet);
+
+  // Swipe down sur le sheet pour fermer
+  let touchStartY = 0;
+  sheet.addEventListener('touchstart', (e) => {
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  sheet.addEventListener('touchend', (e) => {
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    const body = document.getElementById('sheetBody');
+    if (dy > 90 && body.scrollTop <= 0) closeSheet();
+  }, { passive: true });
+
+  // Échap pour fermer
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeSheet();
+  });
+
+  // ===== Deep link : #photo-01 etc. =====
+  window.addEventListener('load', () => {
+    const hash = location.hash.replace('#', '');
+    if (hash && document.getElementById(hash)) {
+      setTimeout(() => {
+        document.getElementById(hash).scrollIntoView({ behavior: 'instant' in document.documentElement.style ? 'instant' : 'auto' });
+      }, 80);
+    }
+  });
+
+  // Haptic léger sur les CTA
+  document.querySelectorAll('.outro-btn, .story-btn').forEach(el => {
+    el.addEventListener('touchstart', () => {
+      if ('vibrate' in navigator) navigator.vibrate(10);
+    }, { passive: true });
+  });
+
+  // ========================================================
+  //  IMMERSION : actions par slide (son + partage), parallaxe
+  // ========================================================
+
+  // Métadonnées par photo (pour partage + son)
+  const PHOTO_META = [
+    { id: 'photo-01', title: 'La nuit où Dakar a vibré', country: 'Sénégal', sound: 'sons/ambiance-01.mp3' },
+    { id: 'photo-02', title: 'Les petits Pères Noël de Babi', country: "Côte d'Ivoire", sound: 'sons/ambiance-02.mp3' },
+    { id: 'photo-03', title: "Les femmes d'ocre", country: 'Namibie', sound: 'sons/ambiance-03.mp3' },
+    { id: 'photo-04', title: "Oumé, l'horizon devant", country: 'Guinée', sound: 'sons/ambiance-04.mp3' }
+  ];
+
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+  }
+
+  // ---- Audio : un seul player réutilisé, fondu doux ----
+  let currentAudio = null;
+  let currentSoundIndex = -1;
+
+  function fadeAudio(audio, from, to, ms, onDone) {
+    const steps = 20;
+    const stepT = ms / steps;
+    let i = 0;
+    audio.volume = from;
+    const iv = setInterval(() => {
+      i++;
+      audio.volume = Math.max(0, Math.min(1, from + (to - from) * (i / steps)));
+      if (i >= steps) { clearInterval(iv); if (onDone) onDone(); }
+    }, stepT);
+  }
+
+  function stopSound() {
+    if (currentAudio) {
+      const a = currentAudio;
+      fadeAudio(a, a.volume, 0, 400, () => { a.pause(); });
+    }
+    currentSoundIndex = -1;
+    document.querySelectorAll('.photo-action-btn.sound-on').forEach(b => b.classList.remove('sound-on'));
+  }
+
+  function toggleSound(index, btn) {
+    // Si déjà en cours sur cette photo → on coupe
+    if (currentSoundIndex === index && currentAudio && !currentAudio.paused) {
+      stopSound();
+      showToast('Son coupé');
+      return;
+    }
+    stopSound();
+    const meta = PHOTO_META[index];
+    if (!meta || !meta.sound) return;
+
+    const audio = new Audio(meta.sound);
+    audio.loop = true;
+    audio.volume = 0;
+    audio.play().then(() => {
+      fadeAudio(audio, 0, 0.55, 800);
+      currentAudio = audio;
+      currentSoundIndex = index;
+      btn.classList.add('sound-on');
+      showToast('🔊 Ambiance — ' + meta.country);
+    }).catch(() => {
+      showToast('Ambiance sonore bientôt disponible');
+    });
+  }
+
+  // ---- Partage natif ----
+  async function sharePhoto(index) {
+    const meta = PHOTO_META[index];
+    const url = 'https://origine-cultures.fr/galerie.html#' + meta.id;
+    const shareData = {
+      title: meta.title + ' — Origine & Cultures',
+      text: `« ${meta.title} » — ${meta.country}. Une photographie de l'exposition Regards sur l'Afrique.`,
+      url: url
+    };
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        if (window.umami) window.umami.track('Galerie - Partage natif', { photo: meta.id });
+      } catch (e) { /* annulé par l'utilisateur */ }
+    } else {
+      // Fallback : copie le lien
+      try {
+        await navigator.clipboard.writeText(url);
+        showToast('Lien copié ✓');
+      } catch (e) {
+        showToast(url);
+      }
+    }
+  }
+
+  // ---- Injection des boutons sur chaque slide photo ----
+  const SOUND_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon class="wave" points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path class="wave" d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path class="wave" d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>';
+  const SHARE_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>';
+
+  document.querySelectorAll('.slide-photo').forEach((slide) => {
+    const idx = parseInt(slide.dataset.index, 10) - 1; // slide 1 = photo 0
+    const actions = document.createElement('div');
+    actions.className = 'photo-actions';
+
+    const soundBtn = document.createElement('button');
+    soundBtn.className = 'photo-action-btn';
+    soundBtn.setAttribute('aria-label', 'Activer le son d\'ambiance');
+    soundBtn.innerHTML = SOUND_SVG;
+    soundBtn.addEventListener('click', () => {
+      if ('vibrate' in navigator) navigator.vibrate(10);
+      toggleSound(idx, soundBtn);
+    });
+
+    const shareBtn = document.createElement('button');
+    shareBtn.className = 'photo-action-btn';
+    shareBtn.setAttribute('aria-label', 'Partager cette photo');
+    shareBtn.innerHTML = SHARE_SVG;
+    shareBtn.addEventListener('click', () => {
+      if ('vibrate' in navigator) navigator.vibrate(10);
+      sharePhoto(idx);
+    });
+
+    actions.appendChild(soundBtn);
+    actions.appendChild(shareBtn);
+    slide.appendChild(actions);
+  });
+
+  // ---- Couper le son quand on quitte une slide photo ----
+  const audioObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      const idx = parseInt(e.target.dataset.index, 10) - 1;
+      if (!e.isIntersecting && currentSoundIndex === idx) {
+        stopSound();
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.slide-photo').forEach(s => audioObserver.observe(s));
+
+  // ---- Parallaxe douce au scroll ----
+  const expoEl = document.getElementById('expo');
+  let ticking = false;
+  expoEl.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const vh = window.innerHeight;
+        document.querySelectorAll('.slide-photo').forEach(slide => {
+          const rect = slide.getBoundingClientRect();
+          // Position du centre de la slide vs centre écran (-1 à 1)
+          const offset = (rect.top + rect.height / 2 - vh / 2) / vh;
+          const img = slide.querySelector('.photo-bg img');
+          if (img && Math.abs(offset) < 1.5) {
+            // Déplacement vertical subtil (max ~18px) en sens inverse
+            img.style.transform = `scale(1.06) translateY(${offset * -18}px)`;
+          }
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+</script>
+</body>
+</html>
