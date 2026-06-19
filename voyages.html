@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1A1A1A">
+<meta name="color-scheme" content="dark">
+
+<!-- SEO -->
+<title>Voyages & regards — Carnets culturels · Origine & Cultures</title>
+<meta name="description" content="Le voyage comme regard et transmission. Sénégal, Côte d'Ivoire, Namibie, Guinée : les carnets photographiques d'Origine & Cultures, association culturelle d'Île-de-France.">
+<meta name="keywords" content="carnets de voyage, photographie culturelle, afrique, transmission, origine et cultures">
+<link rel="canonical" href="https://origine-cultures.fr/voyages.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://origine-cultures.fr/voyages.html">
+<meta property="og:title" content="Voyages & regards — Carnets culturels">
+<meta property="og:description" content="Partir, ce n'est pas s'évader. C'est aller voir ce que le monde a à transmettre.">
+<meta property="og:image" content="https://origine-cultures.fr/photos/DSC06564-md.jpg">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Origine & Cultures">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://origine-cultures.fr/photos/DSC06564-md.jpg">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+
+<!-- Préchargement image hero -->
+<link rel="preload" as="image" href="photos/DSC06564-md.webp" type="image/webp" media="(max-width: 1024px)">
+
+<!-- Umami -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="aebc8cfb-e38f-4abb-b23f-bcfecf01bcb6"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Marcellus&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --noir: #1A1A1A;
+    --noir-carte: #2E2E2E;
+    --or: #C9A84C;
+    --or-clair: #D4B86A;
+    --ivoire: #F5F0E8;
+    --ivoire-sombre: #D6CFBE;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--noir);
+    color: var(--ivoire);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Skip link */
+  .skip-link {
+    position: absolute; top: -100px; left: 0;
+    background: var(--or); color: var(--noir);
+    padding: 12px 20px; z-index: 200;
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    text-decoration: none; transition: top 0.3s;
+  }
+  .skip-link:focus { top: 0; }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--or); outline-offset: 4px; border-radius: 2px;
+  }
+
+  /* Grain */
+  .grain {
+    position: fixed; inset: -50%;
+    width: 200%; height: 200%;
+    pointer-events: none; z-index: 1; opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grainShift 0.4s steps(2) infinite;
+  }
+  @keyframes grainShift {
+    0% { transform: translate(0,0); }
+    50% { transform: translate(-3%, 2%); }
+    100% { transform: translate(2%, -2%); }
+  }
+
+  /* ============ NAV ============ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: linear-gradient(to bottom, rgba(26,26,26,0.95), rgba(26,26,26,0.6) 70%, transparent);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    font-family: 'Marcellus', serif; font-size: 20px;
+    letter-spacing: 0.15em; color: var(--or); text-decoration: none;
+  }
+  .nav-links {
+    list-style: none; display: flex; gap: 32px; align-items: center;
+  }
+  .nav-links a {
+    color: var(--ivoire); text-decoration: none;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    transition: color 0.3s; position: relative;
+  }
+  .nav-links a:not(.nav-cta):not(.nav-insta)::after {
+    content: ''; position: absolute; left: 0; bottom: -4px;
+    width: 0; height: 1px; background: var(--or);
+    transition: width 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+  .nav-links a:not(.nav-cta):not(.nav-insta):hover::after { width: 100%; }
+  .nav-links a:hover { color: var(--or); }
+  .nav-cta {
+    border: 1px solid var(--or); padding: 10px 20px; color: var(--or) !important;
+    transition: all 0.3s;
+  }
+  .nav-cta:hover { background: var(--or); color: var(--noir) !important; }
+  .nav-insta { display: flex; align-items: center; }
+  .burger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
+  .burger span { width: 24px; height: 2px; background: var(--ivoire); transition: all 0.3s; }
+
+  /* ============ HERO ============ */
+  .hero-voy {
+    min-height: 100vh; min-height: 100svh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 100px 28px 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero-voy-bg {
+    position: absolute; inset: 0; z-index: 0;
+  }
+  .hero-voy-bg img {
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 0.28; filter: grayscale(0.3);
+    transform: scale(1.05);
+    animation: heroZoom 12s ease-out forwards;
+  }
+  @keyframes heroZoom { to { transform: scale(1); } }
+  .hero-voy::after {
+    content: ''; position: absolute; inset: 0; z-index: 1;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 0%, rgba(26,26,26,0.6) 70%, var(--noir) 100%);
+    pointer-events: none;
+  }
+  .hero-voy-content { position: relative; z-index: 2; }
+  .hero-eyebrow {
+    font-size: 10px; letter-spacing: 0.5em; text-transform: uppercase;
+    color: var(--or); margin-bottom: 28px;
+    opacity: 0; animation: fadeUp 1s ease 0.3s forwards;
+  }
+  .hero-voy h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 13vw, 110px);
+    font-weight: 300; line-height: 1.0; letter-spacing: -0.01em;
+    margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 1.2s ease 0.5s forwards;
+  }
+  .hero-voy h1 em { color: var(--or); font-style: italic; }
+  .hero-voy-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(17px, 4vw, 24px);
+    font-style: italic; color: var(--ivoire-sombre);
+    max-width: 540px; line-height: 1.5;
+    opacity: 0; animation: fadeUp 1s ease 0.8s forwards;
+  }
+  .hero-voy-line {
+    width: 1px; height: 56px;
+    background: linear-gradient(to bottom, var(--or), transparent);
+    margin-top: 48px;
+    opacity: 0; animation: fadeUp 1s ease 1.1s forwards;
+  }
+
+  /* ============ MANIFESTE ============ */
+  .manifeste {
+    padding: 120px 28px;
+    max-width: 760px; margin: 0 auto;
+    text-align: center;
+  }
+  .section-label {
+    font-size: 10px; letter-spacing: 0.45em; text-transform: uppercase;
+    color: var(--or); margin-bottom: 24px;
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+  }
+  .section-label::before, .section-label::after {
+    content: ''; width: 28px; height: 1px; background: var(--or); opacity: 0.5;
+  }
+  .manifeste h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 6vw, 52px);
+    font-weight: 300; line-height: 1.1; margin-bottom: 32px;
+  }
+  .manifeste h2 em { color: var(--or); font-style: italic; }
+  .manifeste p {
+    font-size: 15px; line-height: 1.9; color: var(--ivoire-sombre);
+    max-width: 620px; margin: 0 auto;
+  }
+
+  /* ============ CARNETS ============ */
+  .carnets-section { padding: 40px 24px 100px; max-width: 1200px; margin: 0 auto; }
+  .carnets-head { text-align: center; margin-bottom: 60px; }
+  .carnets-head h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 6vw, 52px); font-weight: 300; line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .carnets-head h2 em { color: var(--or); font-style: italic; }
+  .carnets-head p {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 17px; color: var(--ivoire-sombre);
+  }
+
+  .carnets-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+  }
+  .carnet {
+    position: relative; aspect-ratio: 3/4; overflow: hidden;
+    text-decoration: none; color: inherit; display: block;
+    background: #111;
+  }
+  .carnet img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.16,1,0.3,1), filter 0.5s ease;
+  }
+  .carnet:hover img { transform: scale(1.06); filter: brightness(0.8); }
+  .carnet-veil {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%, rgba(0,0,0,0.2) 100%);
+    pointer-events: none;
+  }
+  .carnet-content {
+    position: absolute; inset: 0; z-index: 2;
+    padding: 28px; display: flex; flex-direction: column; justify-content: flex-end;
+  }
+  .carnet-lieu {
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--or); margin-bottom: 10px;
+  }
+  .carnet-titre {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3.5vw, 30px); font-weight: 300; font-style: italic;
+    color: var(--ivoire); line-height: 1.15; margin-bottom: 10px;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.6);
+  }
+  .carnet-accroche {
+    font-size: 13px; line-height: 1.6; color: var(--ivoire-sombre);
+    margin-bottom: 18px; max-width: 90%;
+  }
+  .carnet-link {
+    font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--or); display: inline-flex; align-items: center; gap: 8px;
+    transition: gap 0.3s;
+  }
+  .carnet:hover .carnet-link { gap: 14px; }
+
+  /* ============ GALERIE SENSIBLE ============ */
+  .sensible { padding: 100px 0; background: linear-gradient(180deg, var(--noir) 0%, #161310 100%); }
+  .sensible-head { text-align: center; margin-bottom: 56px; padding: 0 24px; }
+  .sensible-head h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 6vw, 52px); font-weight: 300; margin-bottom: 16px;
+  }
+  .sensible-head h2 em { color: var(--or); font-style: italic; }
+  .sensible-head p {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 17px; color: var(--ivoire-sombre); max-width: 460px; margin: 0 auto;
+  }
+  .sensible-strip {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+    padding: 0 8px;
+  }
+  .sensible-tile {
+    aspect-ratio: 1; overflow: hidden; background: #111; position: relative;
+  }
+  .sensible-tile.tall { grid-row: span 2; aspect-ratio: 1/2; }
+  .sensible-tile img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.7s ease; filter: grayscale(0.15);
+  }
+  .sensible-tile:hover img { transform: scale(1.08); filter: grayscale(0); }
+
+  /* ============ NOURRIT (mission) ============ */
+  .nourrit { padding: 120px 28px; max-width: 1000px; margin: 0 auto; text-align: center; }
+  .nourrit > h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 6vw, 52px); font-weight: 300; line-height: 1.1;
+    margin-bottom: 60px;
+  }
+  .nourrit > h2 em { color: var(--or); font-style: italic; }
+  .piliers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .pilier-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 40px;
+    color: var(--or); opacity: 0.5; line-height: 1; margin-bottom: 18px;
+  }
+  .pilier h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 24px;
+    font-weight: 400; color: var(--ivoire); margin-bottom: 14px;
+  }
+  .pilier p { font-size: 13.5px; line-height: 1.8; color: var(--ivoire-sombre); }
+
+  /* ============ CTA FINAL ============ */
+  .cta-final {
+    padding: 130px 28px;
+    background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(201,168,76,0.10) 0%, transparent 70%), linear-gradient(160deg, var(--noir-carte) 0%, #211d14 120%);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-final::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.5), transparent);
+  }
+  .cta-final-inner { max-width: 600px; margin: 0 auto; position: relative; z-index: 1; }
+  .cta-final h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 7vw, 58px); font-weight: 300; line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .cta-final h2 em { color: var(--or); font-style: italic; }
+  .cta-final p {
+    font-size: 15px; line-height: 1.8; color: var(--ivoire-sombre);
+    max-width: 440px; margin: 0 auto 44px;
+  }
+  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+    padding: 17px 34px; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.4s cubic-bezier(0.16,1,0.3,1); min-height: 52px;
+  }
+  .btn-primary { background: var(--or); color: var(--noir); border: 1px solid var(--or); font-weight: 500; }
+  .btn-primary:hover { background: transparent; color: var(--or); transform: translateY(-2px); box-shadow: 0 12px 36px rgba(201,168,76,0.22); }
+  .btn-ghost { background: transparent; color: var(--or); border: 1px solid rgba(201,168,76,0.5); }
+  .btn-ghost:hover { background: rgba(201,168,76,0.12); transform: translateY(-2px); }
+
+  /* ============ FOOTER ============ */
+  footer { padding: 60px 28px 40px; text-align: center; border-top: 1px solid rgba(201,168,76,0.12); }
+  .footer-logo { font-family: 'Marcellus', serif; font-size: 22px; letter-spacing: 0.15em; color: var(--or); margin-bottom: 22px; }
+  .footer-social { display: flex; gap: 20px; justify-content: center; margin-bottom: 24px; }
+  .footer-social a { color: var(--ivoire-sombre); transition: color 0.3s; }
+  .footer-social a:hover { color: var(--or); }
+  .footer-mission {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px;
+    color: var(--ivoire-sombre); max-width: 480px; margin: 0 auto 22px; line-height: 1.6;
+  }
+  .footer-copy { font-size: 11px; letter-spacing: 0.15em; color: var(--ivoire-sombre); opacity: 0.7; }
+  .footer-nav { display: flex; gap: 24px; justify-content: center; margin-bottom: 28px; flex-wrap: wrap; }
+  .footer-nav a { color: var(--ivoire-sombre); text-decoration: none; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
+  .footer-nav a:hover { color: var(--or); }
+
+  /* ============ REVEAL ============ */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ============ MOBILE ============ */
+  @media (max-width: 768px) {
+    .nav-links {
+      position: fixed; top: 0; right: -100%; width: 75%; height: 100vh;
+      flex-direction: column; justify-content: center; gap: 32px;
+      background: rgba(26,26,26,0.98); backdrop-filter: blur(20px);
+      transition: right 0.4s ease; padding: 40px;
+    }
+    .nav-links.open { right: 0; }
+    .burger { display: flex; z-index: 101; }
+    .burger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+  }
+
+  @media (max-width: 640px) {
+    .carnets-grid { grid-template-columns: 1fr; gap: 16px; }
+    .carnet { aspect-ratio: 4/5; }
+    .piliers { grid-template-columns: 1fr; gap: 44px; }
+    .sensible-strip { grid-template-columns: repeat(2, 1fr); }
+    .sensible-tile.tall { grid-row: span 1; aspect-ratio: 1; }
+    .cta-actions { flex-direction: column; align-items: center; }
+    .btn { width: 100%; max-width: 300px; }
+    .manifeste, .nourrit { padding: 90px 24px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    .grain { display: none; }
+    .hero-voy-bg img { animation: none; transform: scale(1); }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Aller au contenu</a>
+<div class="grain"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">O&C</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#about">Association</a></li>
+    <li><a href="galerie.html">Exposition</a></li>
+    <li><a href="voyages.html">Voyages</a></li>
+    <li><a href="adherer.html" class="nav-cta">Adhérer</a></li>
+    <li><a href="https://www.instagram.com/originecultures" target="_blank" rel="noopener" class="nav-insta" aria-label="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    </a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<header class="hero-voy">
+  <div class="hero-voy-bg">
+    <picture>
+      <source type="image/webp" srcset="photos/DSC06564-md.webp 1024w, photos/DSC06564-lg.webp 1600w" sizes="100vw">
+      <img src="photos/DSC06564-lg.jpg" alt="" fetchpriority="high" decoding="async">
+    </picture>
+  </div>
+  <div class="hero-voy-content">
+    <p class="hero-eyebrow">Carnets de voyage</p>
+    <h1>Voyages<br>& <em>regards</em></h1>
+    <p class="hero-voy-sub">« Partir, ce n'est pas s'évader. C'est aller voir, de ses propres yeux, ce que le monde a à transmettre. »</p>
+  </div>
+  <div class="hero-voy-line"></div>
+</header>
+
+<!-- MANIFESTE -->
+<section class="manifeste">
+  <p class="section-label reveal">Notre démarche</p>
+  <h2 class="reveal reveal-d1">Le voyage<br>comme <em>regard</em></h2>
+  <p class="reveal reveal-d2">Chez Origine & Cultures, le voyage n'est pas une parenthèse touristique. C'est une manière d'observer, de comprendre et de documenter. Chaque départ est une rencontre en puissance ; chaque image rapportée, un fragment de mémoire à partager. Nous ne collectionnons pas des destinations — nous recueillons des histoires.</p>
+</section>
+
+<!-- CARNETS -->
+<section class="carnets-section">
+  <div class="carnets-head reveal">
+    <h2>Carnets</h2>
+    <p>Quatre territoires, quatre rencontres, déjà racontés en images.</p>
+  </div>
+  <div class="carnets-grid">
+
+    <a href="galerie.html#photo-01" class="carnet reveal" data-umami-event="Voyages - Carnet Sénégal">
+      <picture>
+        <source type="image/webp" srcset="photos/IMG_1728-sm.webp 640w, photos/IMG_1728-md.webp 1024w" sizes="(max-width:640px) 100vw, 50vw">
+        <img src="photos/IMG_1728-md.jpg" alt="La nuit où Dakar a vibré, Sénégal" loading="lazy" decoding="async">
+      </picture>
+      <div class="carnet-veil"></div>
+      <div class="carnet-content">
+        <div class="carnet-lieu">Sénégal</div>
+        <h3 class="carnet-titre">La nuit où Dakar a vibré</h3>
+        <p class="carnet-accroche">Une ville entière dans la rue, une ferveur jamais vue.</p>
+        <span class="carnet-link">Voir le carnet →</span>
+      </div>
+    </a>
+
+    <a href="galerie.html#photo-02" class="carnet reveal reveal-d1" data-umami-event="Voyages - Carnet Côte d'Ivoire">
+      <picture>
+        <source type="image/webp" srcset="photos/IMG_1729-sm.webp 640w, photos/IMG_1729-md.webp 1024w" sizes="(max-width:640px) 100vw, 50vw">
+        <img src="photos/IMG_1729-md.jpg" alt="Les petits Pères Noël de Babi, Côte d'Ivoire" loading="lazy" decoding="async">
+      </picture>
+      <div class="carnet-veil"></div>
+      <div class="carnet-content">
+        <div class="carnet-lieu">Côte d'Ivoire</div>
+        <h3 class="carnet-titre">Les petits Pères Noël de Babi</h3>
+        <p class="carnet-accroche">Une tradition de rue où l'enfance se peint en blanc.</p>
+        <span class="carnet-link">Voir le carnet →</span>
+      </div>
+    </a>
+
+    <a href="galerie.html#photo-03" class="carnet reveal" data-umami-event="Voyages - Carnet Namibie">
+      <picture>
+        <source type="image/webp" srcset="photos/IMG_1711-sm.webp 640w, photos/IMG_1711-md.webp 1024w" sizes="(max-width:640px) 100vw, 50vw">
+        <img src="photos/IMG_1711-md.jpg" alt="Les femmes d'ocre, peuple Himba, Namibie" loading="lazy" decoding="async">
+      </picture>
+      <div class="carnet-veil"></div>
+      <div class="carnet-content">
+        <div class="carnet-lieu">Namibie</div>
+        <h3 class="carnet-titre">Les femmes d'ocre</h3>
+        <p class="carnet-accroche">Le peuple Himba, et la mémoire d'un geste ancestral.</p>
+        <span class="carnet-link">Voir le carnet →</span>
+      </div>
+    </a>
+
+    <a href="galerie.html#photo-04" class="carnet reveal reveal-d1" data-umami-event="Voyages - Carnet Guinée">
+      <picture>
+        <source type="image/webp" srcset="photos/DSC06564-sm.webp 640w, photos/DSC06564-md.webp 1024w" sizes="(max-width:640px) 100vw, 50vw">
+        <img src="photos/DSC06564-md.jpg" alt="Oumé, l'horizon devant, Guinée" loading="lazy" decoding="async">
+      </picture>
+      <div class="carnet-veil"></div>
+      <div class="carnet-content">
+        <div class="carnet-lieu">Guinée</div>
+        <h3 class="carnet-titre">Oumé, l'horizon devant</h3>
+        <p class="carnet-accroche">Un jeune pêcheur, et tous les rêves d'un départ.</p>
+        <span class="carnet-link">Voir le carnet →</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- GALERIE SENSIBLE -->
+<section class="sensible">
+  <div class="sensible-head reveal">
+    <h2>Au plus <em>près</em></h2>
+    <p>Un geste, un regard, une matière. Ce que l'œil retient quand le reste s'efface.</p>
+  </div>
+  <div class="sensible-strip">
+    <div class="sensible-tile tall reveal">
+      <picture><source type="image/webp" srcset="photos/IMG_1711-md.webp"><img src="photos/IMG_1711-md.jpg" alt="Détail — peuple Himba" loading="lazy" decoding="async"></picture>
+    </div>
+    <div class="sensible-tile reveal reveal-d1">
+      <picture><source type="image/webp" srcset="photos/IMG_1728-sm.webp"><img src="photos/IMG_1728-sm.jpg" alt="Détail — Dakar" loading="lazy" decoding="async"></picture>
+    </div>
+    <div class="sensible-tile reveal reveal-d2">
+      <picture><source type="image/webp" srcset="photos/IMG_1729-sm.webp"><img src="photos/IMG_1729-sm.jpg" alt="Détail — Abidjan" loading="lazy" decoding="async"></picture>
+    </div>
+    <div class="sensible-tile tall reveal reveal-d3">
+      <picture><source type="image/webp" srcset="photos/DSC06564-md.webp"><img src="photos/DSC06564-md.jpg" alt="Détail — mangrove de Guinée" loading="lazy" decoding="async"></picture>
+    </div>
+    <div class="sensible-tile reveal reveal-d1">
+      <picture><source type="image/webp" srcset="photos/IMG_1729-md.webp"><img src="photos/IMG_1729-md.jpg" alt="Détail — tradition ivoirienne" loading="lazy" decoding="async"></picture>
+    </div>
+    <div class="sensible-tile reveal reveal-d2">
+      <picture><source type="image/webp" srcset="photos/IMG_1728-md.webp"><img src="photos/IMG_1728-md.jpg" alt="Détail — ferveur sénégalaise" loading="lazy" decoding="async"></picture>
+    </div>
+  </div>
+</section>
+
+<!-- CE QUE ÇA NOURRIT -->
+<section class="nourrit">
+  <h2 class="reveal">Ce que ces voyages<br>font <em>naître</em></h2>
+  <div class="piliers">
+    <div class="pilier reveal">
+      <div class="pilier-num">I</div>
+      <h3>Exposer</h3>
+      <p>Les images rapportées deviennent des expositions, ouvertes à tous, pensées comme des rencontres.</p>
+    </div>
+    <div class="pilier reveal reveal-d1">
+      <div class="pilier-num">II</div>
+      <h3>Raconter</h3>
+      <p>Chaque photographie porte un récit, une histoire vécue — pas une carte postale, mais un témoignage.</p>
+    </div>
+    <div class="pilier reveal reveal-d2">
+      <div class="pilier-num">III</div>
+      <h3>Transmettre</h3>
+      <p>Ce qui a été vu se partage, entre générations et entre cultures. C'est le cœur de notre mission.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="cta-final-inner reveal">
+    <h2>Le prochain départ<br>se <em>prépare</em></h2>
+    <p>Chaque voyage à venir naît du soutien de celles et ceux qui croient au pouvoir des cultures.</p>
+    <div class="cta-actions">
+      <a href="adherer.html" class="btn btn-primary" data-umami-event="Voyages - CTA Adhérer">Adhérer · 20€/an</a>
+      <a href="https://www.instagram.com/originecultures" target="_blank" rel="noopener" class="btn btn-ghost" data-umami-event="Voyages - CTA Instagram">Suivre l'aventure</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Origine & Cultures</div>
+  <nav class="footer-nav" aria-label="Navigation secondaire">
+    <a href="index.html">Accueil</a>
+    <a href="galerie.html">Exposition</a>
+    <a href="voyages.html">Voyages</a>
+    <a href="adherer.html">Adhérer</a>
+  </nav>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/originecultures" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    </a>
+    <a href="mailto:originecultures@outlook.fr" aria-label="Email">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    </a>
+  </div>
+  <div class="footer-mission">Promouvoir, préserver et transmettre le patrimoine culturel sous toutes ses formes.</div>
+  <div class="footer-copy">Association loi 1901 · Sarcelles, Île-de-France · © 2026 Origine &amp; Cultures</div>
+</footer>
+
+<script>
+  // Burger menu
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  if (burger) {
+    burger.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      burger.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }));
+  }
+
+  // Reveal au scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Haptic léger sur CTA
+  document.querySelectorAll('.btn, .carnet').forEach(el => {
+    el.addEventListener('touchstart', () => { if ('vibrate' in navigator) navigator.vibrate(8); }, { passive: true });
+  });
+</script>
+</body>
+</html>
